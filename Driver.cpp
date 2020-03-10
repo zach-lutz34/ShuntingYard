@@ -11,11 +11,8 @@ int main()
     cin >> expression;
     cin >> delims;
 
-    Split* split = new Split(1);
+    Split* split = new Split();
     split->split(expression, delims);
-    for(int i = 0; i <= expression.length(); ++i)
-    {
-        cout << split->stringArray[i] << "\n";
-    }
+    
     return 0;
 }
