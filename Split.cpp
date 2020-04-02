@@ -1,43 +1,38 @@
 #include "Split.hpp"
 
-Split::Split(int b)
-{   
-    this->a = b;
-}
-
-void Split::split(string a, string b)
+Queue* Split::split(string a, string b)
 {
+    Queue* qOfStrings = new Queue();
     int signal = 0;
-    int count = 0;
     string stringToSplit = a;
     string delims = b;
-    int length = stringSplit.length();
+    int length = stringToSplit.length();
     int lengthOfDelims = delims.length();
     string temp = "";
     string temp2 = "";
     for(int i = 0; i < length; ++i)
     {   
-        char stringAti = stringSplit.at(i);
+        char stringAti = stringToSplit.at(i);
         
         for(int j = 0; j < lengthOfDelims; ++j )
         {
             char delimAti = delims.at(j);
-            if(stringAti != delimAti) //not a delimeter
+            if(stringAti != delimAti) 
             {
                 temp = stringAti;
                 signal = 1;
             }
-            else //a delimeter
+            else 
             {
                 signal = 0;
                 if(temp2 != "")
                 {
-                    this->stringArray[count] = temp2;
-                    ++count;
+                    qOfStrings->addEnd(temp2);
+                    
                 }
                 temp = stringAti;
-                this->stringArray[count] = temp;
-                ++count;
+                qOfStrings->addEnd(temp);
+                
                 temp = "";
                 temp2 = "";
                 break;
@@ -50,7 +45,7 @@ void Split::split(string a, string b)
     } 
     if(temp2 != "")
     {
-        this->stringArray[count] = temp2;
-        ++count;
+        qOfStrings->addEnd(temp2);
     }
+    return qOfStrings;
 }
